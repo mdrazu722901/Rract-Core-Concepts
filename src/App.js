@@ -11,6 +11,7 @@ function App() {
         className = "App-logo" / >
         <Count> </Count> 
         <Users></Users>
+        <NewUsers></NewUsers>
         <Person name = "sakib khan" person = "he is a good boy" > </Person> 
         <Person> </Person>  
         <Person> </Person> 
@@ -19,6 +20,31 @@ function App() {
     )
 
 }
+
+ function NewUsers(){
+     const [into, setInto] = useState([]);
+     useEffect(() =>{
+         fetch(`https://jsonplaceholder.typicode.com/users`)
+         .then(res => res.json())
+         .then(data => setInto(data))
+     });
+   return(
+         <div>
+            {/* <h1>users Email:{into.length} </h1>
+            <p>users Number:{into.length} </p> */}
+            <ul>
+                {
+                    into.map(into => <li>Email: {into.email} phone: {into.phone}</li>)
+                }
+            </ul>
+         </div>
+     )
+ };
+
+
+
+
+
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -69,4 +95,6 @@ function Person(props) {
         div >
     )
 }
+
+
 export default App;
